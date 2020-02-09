@@ -14,6 +14,8 @@ class Image(models.Model):
     image_title = models.CharField(max_length =60)
     image_name = models.CharField(max_length =60)
     image_caption = models.CharField(max_length =60)
+    likes = models.CharField(max_length =60)
+    comments = models.CharField(max_length =60)
     
    
 
