@@ -1,19 +1,53 @@
+{% load static %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
+
 <body>
-<nav class="navbar navbar-" style="background-color: brown;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'welcome' %}" style="color: cornsilk;"></i>INSTAGRAM</a>
-      <i class="fa fa-instagram" aria-hidden="true"></i>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-light bg-white" id="top">
+        <section id="logo-section">
+            <img class="logo"
+                src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png" alt="">
+            <div id="bee">
+                <img class="logoname"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"
+                    alt="">
+            </div>
+
+        </section>
+        <form action="" class="search-section">
+            <input type="search" name="search" placeholder="search" class="input-search">
+        </form>
+        <section class="icons-section">
+            <a href="#" class="far fa-compass"></a>
+            <a href="{%url 'index'%}" class="far fa-heart"></a>
+            <a href="{% url 'profile' user.id%}" class="far fa-user"></a>
+
+            {% if user.is_authenticated %}
+            <ul>
+                <button>
+                    <a href="/logout">Logout</a>
+                </button>
+
+                </li>
+            </ul>
+            {% else %}
+            <button>
+                <a class='btn btn-default' href="/accounts/login">Login</a>
+            </button>
+
+            {% endif %}
+        </section>
+
+
+    </nav>
 </body>
+
 </html>

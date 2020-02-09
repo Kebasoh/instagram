@@ -1,0 +1,115 @@
+{%extends "base.html"%}
+{% load static %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+<div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Post</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> 
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <form action="{%url 'index'%}" method="POST" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        {{post_form.as_p}}
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-indigo" type="submit">Post<i
+                                    class="fas fa-paper-plane-o ml-1"></i></button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm">
+        POST <i class="fas fa-plus"></i> </a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-6">
+
+            {% if posts %}
+
+            {% for post in posts  %}
+            <div class="card" style="margin-top: 50px;">
+                <div class="card-body" >
+                    <h1>{{ post.profile }}</h1>
+                </div>
+
+
+                
+                <div class="view overlay">
+                    {% if post.image %}
+                    <a href="{%url 'post' post.id %}"><img class="card-img-top" src=" {{post.image.url}} "  alt="" class="image-fluid" style="width: auto; height:400px;"></a> 
+                     {% endif %}
+                         <a href="{%url 'post' post.id %}">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+
+                <div class="card-body">
+                    <a href="{%url 'like'  %}">
+                        <i class="far fa-heart fa-lg" style="font-size: 30px; margin-right:10px; color:#fa6161"></i>
+                    </a>
+                    <a href="{%url 'post' post.id %}">
+                        <i class="far fa-comment fa-lg" style="font-size: 30px;"></i>
+                    </a>
+                </div>
+                <p class="card-text ml-4" style="font-weight: bolder;" >{{post.likes}} likes</p>
+                <div class="ml-4 mb-3">
+                    <p class="card-text">{{post.caption}}</p>
+                    <p class="text-muted">{{post.created_date|timesince|upper}}</p>
+                </div>
+                <div class="ml-4">
+                    {%for comment in comments%}
+                    {%if comment.id == post.id%}
+                    <p class="card-text text-muted">{{comments|length}} comments</p>
+                    <p class="card-text mb-3"><span style="font-weight: bolder;">{{comment.user.username}}
+                        </span>{{comment.comment}}</p>
+                    {%endif%}
+                    {%endfor%}
+                    <p >{{post.created_date|timesince}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="loader"></div>
+        </div>
+        <div class="col-lg-2"></div>
+
+
+
+        {% else %}
+        <p>No Posts are available</p>
+
+        {% endif %}
+
+    </div>
+</div>
+</div>
+
+
+
+
+{% endblock content %}

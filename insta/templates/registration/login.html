@@ -1,0 +1,55 @@
+<!-- <body class="flex">
+
+	<div class="login">
+		<div class="logo"><img src="https://cdn130.picsart.com/259430940027212.png?r1024x1024"></div>
+		<div class="form">
+			<form>
+				<div class="inputGroup">
+					<input id="input" type="text" name="user" autocomplete="off" required="">
+					<label for="input">Phone number, username, or email</label>
+				</div>
+				<div class="inputGroup">
+					<input id="input" type="password" name="pass" autocomplete="off" required="">
+					<label for="input">Password</label>
+				</div>
+				<div class="inputGroup">
+					<button id="login">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body> -->
+
+{% extends "registration/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			{% if form.errors %}
+			<p>Password or username is incorrect</p>
+			{% endif %}
+			<div class="panel panel-default">
+				<div><img class="instalogo" src="https://cdn130.picsart.com/259430940027212.png?r1024x1024"></div>
+				<div class="panel-heading">
+					<h3 class="text-center">Sign In</h3>
+				</div>
+			</div>
+			<div class="panel-body">
+				<form action="" method="post">
+					{% csrf_token %}
+					{% bootstrap_form form %}
+
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-sm" value="Login">
+						<input type="hidden" name="next" value="{{next}}">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}
