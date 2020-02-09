@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns=[
-    url('^$',views.insta,name = 'insta'),
-    url('^today/$',views.insta_of_day,name='instaToday')
+    url(r'^$', views.welcome, name = 'welcome'),
+    url(r'^today/$', views.insta_of_day, name = 'instaToday'),
+    url(r'^archives/(\d{4}-\d{2}-\d{2})/$',views.past_days_insta,name = 'pastInsta') 
 ]
