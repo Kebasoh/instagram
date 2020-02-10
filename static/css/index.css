@@ -1,0 +1,12 @@
+body{
+    
+    background-color: #4444;
+}
+
+.user,.mycom,.fade{
+    text-transform: capitalize;
+}
+
+img{
+    cursor: pointer;
+}

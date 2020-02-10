@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: greencache
+Version: 1.0.0
+Summary: A python library for various kinds of cache.
+Home-page: http://pypi.python.org/pypi/greencache/
+Author: Amol Umrale
+Author-email: babaiscool@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3.4

@@ -1,0 +1,37 @@
+{% extends 'socioapp/base.html'%}
+
+{% block content %}
+{% if comments %}
+<div class="container">
+    {% if number == 1 %}
+        <i class="text-center">{{number}} comment</i>
+    {% else %}
+    <i class="text-center">{{number}} comments</i>
+    {% endif %}
+{% for comment in comments %}
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+    <div class="card" style="width: 30rem;">
+        <div class="card-header">
+            <h4 class="text-center mycom">{{comment.user.username}}</h4>
+                <span><hr></span>
+               <span class="mr-5"> <img src="{{comment.user.profile.profile_photo.url}}" alt=""
+                style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
+             
+                <span class="text-center">{{comment.comment}}</span>
+               </div>
+       
+
+    </div>
+</div>
+
+<div class="col-sm-3"></div>
+</div>
+
+{% endfor %}
+</div>
+{% else %}
+<p>no comments yet</p>
+{% endif %}
+{% endblock %}

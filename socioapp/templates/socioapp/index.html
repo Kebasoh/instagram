@@ -1,0 +1,63 @@
+{% extends 'socioapp/base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <a href="{%url 'upload'%}" class="btn btn-outline-info btn-sm">upload</a>
+
+
+    {% for image in images %}
+    <div class="row">
+        <div class=" col-md-3 ">
+
+        </div>
+        <div class=" col-md-6 mx-auto">
+            <div class="card mb-2" style="width: 25rem;">
+                <div class="card-header">
+                    <span><img src="{{image.user.profile.profile_photo.url}}" alt="" data-target="#{{image.image_name}}{{image.id}}"
+                        data-toggle="modal"
+                            style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
+                    <span>
+                        <p>{{image.user.username}}</p>
+                    </span>
+
+                </div>
+                <img src="{{image.image.url}}" alt="" class="img-thumbnail img-responsive img-fluid">
+
+                <div class="card-footer">
+                    <a href="{% url 'likes' image.id%}" class="btn btn-sm btn-outline-info">{{image.likes}} Likes</a>
+
+                    <a href="{% url 'newComment' image.id%}" class="btn btn-outline-info btn-sm">Add comments</a>
+                    <a href="{% url 'comments' image.id %}" class="btn btn-outline-info btn-sm">view comments</a>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class=" col-md-3 "></div>
+    </div>
+
+    <div class="modal fade" id="{{image.image_name}}{{image.id}}" tabindex="-1" role="dialog"
+        aria-labelledby="examplemodal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="modaltitle">{{image.image_name}}</h4>
+
+
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{image.image.url}}" alt="" width="100%" height="100%" class="img-top">
+                </div>
+                <div class="modal-footer">
+                    <p class="mr-auto">{{image.image_caption}}</p>
+
+                    <button type="button" class="btn btn-sm btn-outline-info" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}

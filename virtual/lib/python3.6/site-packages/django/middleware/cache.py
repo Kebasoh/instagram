@@ -72,7 +72,7 @@ class UpdateCacheMiddleware(MiddlewareMixin):
         return hasattr(request, '_cache_update_cache') and request._cache_update_cache
 
     def process_response(self, request, response):
-        """Set the cache, if needed."""
+        """Sets the cache, if needed."""
         if not self._should_update_cache(request, response):
             # We don't need to update the cache, just return.
             return response
@@ -83,10 +83,6 @@ class UpdateCacheMiddleware(MiddlewareMixin):
         # Don't cache responses that set a user-specific (and maybe security
         # sensitive) cookie in response to a cookie-less request.
         if not request.COOKIES and response.cookies and has_vary_header(response, 'Cookie'):
-            return response
-
-        # Don't cache a response with 'Cache-Control: private'
-        if 'private' in response.get('Cache-Control', ()):
             return response
 
         # Try to get the timeout from the "max-age" section of the "Cache-
@@ -126,7 +122,7 @@ class FetchFromCacheMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         """
-        Check whether the page is already cached and return the cached
+        Checks whether the page is already cached and returns the cached
         version if available.
         """
         if request.method not in ('GET', 'HEAD'):

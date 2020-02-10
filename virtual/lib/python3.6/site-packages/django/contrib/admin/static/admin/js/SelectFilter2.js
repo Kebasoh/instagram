@@ -1,4 +1,4 @@
-/*global SelectBox, gettext, interpolate, quickElement, SelectFilter*/
+/*global SelectBox, addEvent, gettext, interpolate, quickElement, SelectFilter*/
 /*
 SelectFilter2 - Turns a multiple-select box into a filter interface.
 
@@ -118,33 +118,19 @@ Requires jQuery, core.js, and SelectBox.js.
                 }
                 e.preventDefault();
             };
-            choose_all.addEventListener('click', function(e) {
-                move_selection(e, this, SelectBox.move_all, field_id + '_from', field_id + '_to');
-            });
-            add_link.addEventListener('click', function(e) {
-                move_selection(e, this, SelectBox.move, field_id + '_from', field_id + '_to');
-            });
-            remove_link.addEventListener('click', function(e) {
-                move_selection(e, this, SelectBox.move, field_id + '_to', field_id + '_from');
-            });
-            clear_all.addEventListener('click', function(e) {
-                move_selection(e, this, SelectBox.move_all, field_id + '_to', field_id + '_from');
-            });
-            filter_input.addEventListener('keypress', function(e) {
-                SelectFilter.filter_key_press(e, field_id);
-            });
-            filter_input.addEventListener('keyup', function(e) {
-                SelectFilter.filter_key_up(e, field_id);
-            });
-            filter_input.addEventListener('keydown', function(e) {
-                SelectFilter.filter_key_down(e, field_id);
-            });
-            selector_div.addEventListener('change', function(e) {
+            addEvent(choose_all, 'click', function(e) { move_selection(e, this, SelectBox.move_all, field_id + '_from', field_id + '_to'); });
+            addEvent(add_link, 'click', function(e) { move_selection(e, this, SelectBox.move, field_id + '_from', field_id + '_to'); });
+            addEvent(remove_link, 'click', function(e) { move_selection(e, this, SelectBox.move, field_id + '_to', field_id + '_from'); });
+            addEvent(clear_all, 'click', function(e) { move_selection(e, this, SelectBox.move_all, field_id + '_to', field_id + '_from'); });
+            addEvent(filter_input, 'keypress', function(e) { SelectFilter.filter_key_press(e, field_id); });
+            addEvent(filter_input, 'keyup', function(e) { SelectFilter.filter_key_up(e, field_id); });
+            addEvent(filter_input, 'keydown', function(e) { SelectFilter.filter_key_down(e, field_id); });
+            addEvent(selector_div, 'change', function(e) {
                 if (e.target.tagName === 'SELECT') {
                     SelectFilter.refresh_icons(field_id);
                 }
             });
-            selector_div.addEventListener('dblclick', function(e) {
+            addEvent(selector_div, 'dblclick', function(e) {
                 if (e.target.tagName === 'OPTION') {
                     if (e.target.closest('select').id === field_id + '_to') {
                         SelectBox.move(field_id + '_to', field_id + '_from');
@@ -154,9 +140,7 @@ Requires jQuery, core.js, and SelectBox.js.
                     SelectFilter.refresh_icons(field_id);
                 }
             });
-            findForm(from_box).addEventListener('submit', function() {
-                SelectBox.select_all(field_id + '_to');
-            });
+            addEvent(findForm(from_box), 'submit', function() { SelectBox.select_all(field_id + '_to'); });
             SelectBox.init(field_id + '_from');
             SelectBox.init(field_id + '_to');
             // Move selected from_box options to to_box
@@ -164,9 +148,15 @@ Requires jQuery, core.js, and SelectBox.js.
 
             if (!is_stacked) {
                 // In horizontal mode, give the same height to the two boxes.
-                var j_from_box = $('#' + field_id + '_from');
-                var j_to_box = $('#' + field_id + '_to');
-                j_to_box.height($(filter_p).outerHeight() + j_from_box.outerHeight());
+                var j_from_box = $(from_box);
+                var j_to_box = $(to_box);
+                var resize_filters = function() { j_to_box.height($(filter_p).outerHeight() + j_from_box.outerHeight()); };
+                if (j_from_box.outerHeight() > 0) {
+                    resize_filters(); // This fieldset is already open. Resize now.
+                } else {
+                    // This fieldset is probably collapsed. Wait for its 'show' event.
+                    j_to_box.closest('fieldset').one('show.fieldset', resize_filters);
+                }
             }
 
             // Initial icon refresh
@@ -235,7 +225,7 @@ Requires jQuery, core.js, and SelectBox.js.
         }
     };
 
-    window.addEventListener('load', function(e) {
+    addEvent(window, 'load', function(e) {
         $('select.selectfilter, select.selectfilterstacked').each(function() {
             var $el = $(this),
                 data = $el.data();

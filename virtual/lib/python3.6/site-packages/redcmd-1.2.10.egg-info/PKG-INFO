@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: redcmd
+Version: 1.2.10
+Summary: A library to manage command line interface for an application.
+Home-page: http://pypi.python.org/pypi/redcmd/
+Author: Amol Umrale
+Author-email: babaiscool@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks

@@ -1,0 +1,3 @@
+[console_scripts]
+redcmd = redcmd.main:main
+

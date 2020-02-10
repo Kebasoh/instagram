@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: redlib
+Version: 1.5.7
+Summary: A collection of classes and functions for general utility.
+Home-page: http://pypi.python.org/pypi/redlib/
+Author: Amol Umrale
+Author-email: babaiscool@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
