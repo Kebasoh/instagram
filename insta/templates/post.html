@@ -1,9 +1,9 @@
  
-{%extends "base.html"%}
-{%load bootstrap4%}
-{%load static %}
+{% extends "base.html"%}
+{% load bootstrap4%}
+{% load static %}
 
-{%block content%}
+{% block content%}
 
 <div class="container" style="margin-top: 100px;">
     <div class="row">
@@ -36,8 +36,8 @@
             <p class="ml-2 text-muted">{{post.date|timesince|upper}}</p>
 
             <form class="" action="{%url 'post' post.id%}" style="border:none; padding:0; display:flex" method="POST">
-                {%csrf_token%}
-                {{comment_form}}
+                {% csrf_token %}
+                {{ comment_form }}
                 <button style="border:none; border-radius:0; font-weight:bold; padding:10px;">Post</button>
             </form>
         </div>
@@ -49,4 +49,4 @@
     </div>
 </div>
 
-{%endblock%}
+{% endblock %}

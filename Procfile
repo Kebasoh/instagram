@@ -1,1 +1,0 @@
-web: gunicorn instajam.wsgi --log-file -
