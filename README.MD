@@ -48,3 +48,6 @@
 ## Support and contact details
 > The application is an open-source product if you  want to improve it or in an event of a bug  contact this
 > Email:(ongatikebaso@gmail.com) .
+### License
+>You can check out the license [click here](https://choosealicense.com/licenses/mit/)
+This project is licensed under the terms of **MIT**
