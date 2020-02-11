@@ -43,3 +43,8 @@
 - Django (Python framework)
 - HTML for the mark up pages
 - CSS for stylying
+
+
+## Support and contact details
+> The application is an open-source product if you  want to improve it or in an event of a bug  contact this
+> [email](ongatikebaso@gmail.com) .
