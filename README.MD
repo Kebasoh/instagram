@@ -51,3 +51,6 @@
 ### License
 >You can check out the license [click here](https://choosealicense.com/licenses/mit/)
 This project is licensed under the terms of **MIT**
+
+- 
+  Copyright (c)  2020
