@@ -36,3 +36,10 @@
 - step 3:Run the the application in  the terminal using python manage.py
 
 - step 4:Click the link in the terminal result to view the the website
+
+# Technologies Used
+
+- Vanilla Python.
+- Django (Python framework)
+- HTML for the mark up pages
+- CSS for stylying
