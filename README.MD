@@ -10,6 +10,8 @@
 ## Project Description
 
 
+- This is a social media website that enables one to post images and videos and also can see othe's images and videos and comment and like them.
+
 
 
 ## Technology Used
